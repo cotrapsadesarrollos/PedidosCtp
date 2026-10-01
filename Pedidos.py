@@ -9,3 +9,4 @@ st.title("Control de Pedidos", text_alignment="center")
 
 st.divider()
 st.header("Archvios necesarios para el procesamiento:")
+inventario_plataforma = st.file_uploader("Seleccionar archivo con la lista de materiales necesarios en el archivos de pedidos:", type=["xlsx","xls", "xlsm"])
