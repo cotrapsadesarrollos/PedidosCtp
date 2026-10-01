@@ -14,4 +14,5 @@ inventario_sae = st.file_uploader("Seleccionar INVENTARIO DE SAE:", type=["xlsx"
 inventario_homologado = st.file_uploader("Seleccionar INVENTARIO HOMOLOGADO SEMANAL:", type=["xlsx","xls", "xlsm"])
 
 st.divider()
-
+st.subheader("Seleccionar el numero de bases activas")
+numero_bases_activas = st.number_input("Numero de Bases activas?", min_value=1, max_value=10)
