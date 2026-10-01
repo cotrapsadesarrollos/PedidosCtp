@@ -72,6 +72,19 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     for i in nombre_bases_activas:
       df = df.merge(tablas_bases[i], how='left', left_on='Numero de Parte', right_on='NO. DE PARTE ').drop(['NO. DE PARTE '], axis=1).copy()
 
+    #Agregamos columna de TOTAL de materiales en las bases y sumamos las existencias de las bases activas
+    df['TOTAL en Bases']=[0 for x in range(df.shape[0])]
+
+    c=6
+    for i in nombre_bases_activas:
+        df[df.columns[c]] = [0 if str(x)=='nan' else x for x in df[df.columns[c]]]
+        c+=4
+
+    c=6
+    for i in nombre_bases_activas:
+        df['TOTAL en Bases'] = df['TOTAL en Bases'] + df[df.columns[c]]
+        c+=4
+
     st.dataframe(df)
     #st.write(tablas_bases)
 
