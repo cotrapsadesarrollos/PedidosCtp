@@ -58,8 +58,18 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     for i in nombre_bases_activas:
         tablas_bases[i]=homologado_inventarios_bases[['NO. DE PARTE ', homologado_inventarios_bases.columns[c], homologado_inventarios_bases.columns[c+1], homologado_inventarios_bases.columns[c+2], homologado_inventarios_bases.columns[c+3]]]
         c+=4
-  
-    st.write(tablas_bases)
+
+    #Creamos diccionarios con la informacion de SAE de los materiales
+    dictio_descripcion = dict(zip(inventario_sae['Clave '],inventario_sae['Descripción ']))
+    dictio_linea = dict(zip(inventario_sae['Clave '],inventario_sae['Línea ']))
+    dictio_inventario_sae = dict(zip(inventario_sae['Clave '],inventario_sae['Existencias ']))
+
+    #Agregamos a la tabla principal la descripcion y la existencia en SAE
+    df['Descripcion'] = df['Numero de Parte'].map(lambda x: dictio_descripcion[str(x)])
+    df[f'Existencia SAE {date.today()}'] = df['Numero de Parte'].map(lambda x: dictio_inventario_sae[str(x)])
+
+    st.dataframe(df)
+    #st.write(tablas_bases)
 
 
 
