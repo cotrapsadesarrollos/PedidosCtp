@@ -49,6 +49,15 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
   st.write("### Inventario Homologado semanal")
   st.dataframe(homologado_inventarios_bases)
 
+  #Creamos un diccionario con las tablas de los inventarios de cada base activa
+  tablas_bases = {}
+  c=2
+  for i in nombre_bases_activas:
+      tablas_bases[i]=homologado_inventarios_bases[['NO. DE PARTE ', homologado_inventarios_bases.columns[c], homologado_inventarios_bases.columns[c+1], homologado_inventarios_bases.columns[c+2], homologado_inventarios_bases.columns[c+3]]]
+      c+=4
+
+  st.write(tablas_bases)
+
 
 
 
