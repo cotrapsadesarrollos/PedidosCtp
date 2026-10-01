@@ -68,6 +68,10 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     df['Descripcion'] = df['Numero de Parte'].map(lambda x: dictio_descripcion[str(x)])
     df[f'Existencia SAE {date.today()}'] = df['Numero de Parte'].map(lambda x: dictio_inventario_sae[str(x)])
 
+    #Agregamos la informacion de las bases activas a la tabla principal
+    for i in nombre_bases_activas:
+      df = df.merge(tablas_bases[i], how='left', left_on='Numero de Parte', right_on='NO. DE PARTE ').drop(['NO. DE PARTE '], axis=1).copy()
+
     st.dataframe(df)
     #st.write(tablas_bases)
 
