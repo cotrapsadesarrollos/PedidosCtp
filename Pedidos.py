@@ -19,7 +19,7 @@ inventario_homologado = st.file_uploader("Seleccionar INVENTARIO HOMOLOGADO SEMA
 st.divider()
 
 
-if lista_de_materiales is not None and inventario_sae is not None and inventario_homologado is not None:
+if lista_de_materiales is not None and inventario_sae_ is not None and inventario_homologado is not None:
   # Leer el archivo Excel del inventario de la plataforma e Inventario SAE
   df = pd.read_excel(lista_de_materiales)
   inventario_sae = pd.read_excel(inventario_sae_)
