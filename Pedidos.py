@@ -29,3 +29,6 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
   st.write("### Inventario SAE")
   st.dataframe(inventario_sae)
+
+  nombre_bases_activas = pd.ExcelFile(inventario_homologado).sheet_names[1:numero_bases_activas+1]
+  st.write(nombre_bases_activas)
