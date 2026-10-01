@@ -20,7 +20,7 @@ st.divider()
 
 
 if lista_de_materiales is not None and inventario_sae_ is not None and inventario_homologado is not None:
-  # Leer el archivo Excel del inventario de la plataforma e Inventario SAE
+  # Leer el archivo Excel de Lista de Materiales e Inventario SAE
   df = pd.read_excel(lista_de_materiales)
   inventario_sae = pd.read_excel(inventario_sae_)
 
@@ -30,5 +30,9 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
   st.write("### Inventario SAE")
   st.dataframe(inventario_sae)
 
+  # Ingenieria de variables y lectura del archivo de Inventario homologado semanal
   nombre_bases_activas = pd.ExcelFile(inventario_homologado).sheet_names[1:numero_bases_activas+1]
-  st.write(nombre_bases_activas)
+  columnas = list(np.array(pd.read_excel(inventario_homologado)[3:4])[0][:2]) + list(np.array(pd.read_excel(inventario_homologado)[2:3])[0][2:])
+  st.write(columnas)
+
+  
