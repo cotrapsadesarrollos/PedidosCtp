@@ -30,16 +30,31 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
   st.write("### Inventario SAE")
   st.dataframe(inventario_sae)
 
-  # Ingenieria de variables y lectura del archivo de Inventario homologado semanal
+  # Ingenieria de variables para posterior lectura del archivo de Inventario homologado semanal
   nombre_bases_activas = pd.ExcelFile(inventario_homologado).sheet_names[1:numero_bases_activas+1]
   columnas = list(np.array(pd.read_excel(inventario_homologado)[3:4])[0][:2]) + list(np.array(pd.read_excel(inventario_homologado)[2:3])[0][2:])
-  st.write(columnas)
   #Agregamos la base a las columnas especificas de cada base
   col=1
   for i in nombre_bases_activas:
       for j in range(1,5):
           columnas[col+j] = columnas[col+j] + f' {i}'
       col=j+1
-  st.write(columnas)
 
+  #Leemos el archivo de Inventario homologado semanal
+  homologado_inventarios_bases = pd.read_excel(inventario_homologado)[4:].dropna(subset=['Unnamed: 0'])
+  homologado_inventarios_bases.columns = columnas
+  homologado_inventarios_bases.rename(columns={'Total\n+\nCotizaciones':'Total en Bases'}, inplace=True)
+  homologado_inventarios_bases.reset_index(drop=True, inplace=True)
   
+  st.write("### Inventario Homologado semanal")
+  st.dataframe(homologado_inventarios_bases)
+
+
+
+
+
+
+
+
+
+
