@@ -11,7 +11,7 @@ st.divider()
 st.header("Archvios necesarios para el procesamiento:")
 lista_de_materiales = st.file_uploader("Seleccionar archivo con la LISTA DE MATERIALES necesarios en el archivos de pedidos:", type=["xlsx","xls"])
 inventario_sae = st.file_uploader("Seleccionar INVENTARIO DE SAE:", type=["xlsx","xls"])
-inventario_homologado = st.file_uploader("Seleccionar INVENTARIO DE SAE:", type=["xlsx","xls", "xlsm"])
+inventario_homologado = st.file_uploader("Seleccionar INVENTARIO HOMOLOGADO SEMANAL:", type=["xlsx","xls", "xlsm"])
 
 st.divider()
 
