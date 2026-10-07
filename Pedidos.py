@@ -115,8 +115,10 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     #Reemplazamos los ceros por nulos para que no hagan ruido en el archivo
     #df.replace(0, np.nan, inplace=True)
 
+    st.dataframe(df)
+
     # Permitir descargar el resultado
-    output_name = f"Inventario_{i}.xlsx"
+    output_name = f"Pedidos_{date.today()}.xlsx"
     df.to_excel(output_name, index=False)
     with open(output_name, "rb") as file:
         st.download_button(
@@ -126,7 +128,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
             mime=f"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
 
-    st.dataframe(df)
+
     
 
 
