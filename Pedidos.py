@@ -13,7 +13,7 @@ numero_bases_activas = st.number_input("Numero de Bases activas?", min_value=1, 
 
 st.divider()
 st.subheader("Seleccionar el numero de pedidos activos")
-numero_de_pedidos = st.number_input("Numero de Pedidos activos?", min_value=1, max_value=20)
+numero_de_pedidos = st.number_input("Numero de columnas de Pedidos?", min_value=1, max_value=20)
 
 st.divider()
 st.header("Archvios necesarios para el procesamiento:")
