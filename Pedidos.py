@@ -100,13 +100,13 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     diccionario_letras = {i:letra for i, letra in enumerate(string.ascii_uppercase, start=1)}
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
-    formula_suma_pedidos = f"= +"
+    formula_suma_pedidos = "= +"
     for i in range(1, numero_de_pedidos + 1):
-      formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{j}+'
+      formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{}+'
 
     l=[]
     for j in range(2, df.shape[0]+2):
-      l.append(formula_suma_pedidos)
+      l.append(formula_suma_pedidos.format(j))
       
     st.write(l)
     df['TOTAL Pedidos'] = l
