@@ -102,7 +102,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
         df['TOTAL Pedidos'] = df['TOTAL Pedidos'] + df[df.columns[-i]]
 
     diccionario_letras = {i:letra for i, letra in enumerate(string.ascii_uppercase, start=1)}
-    st.write(diccionario_letras)
+    st.write(diccionario_letras, df.shape[0])
 
     #Agregamos la columna del TOTAL: (Pedidos) + (SAE - Bases)
     df['TOTAL: (Pedidos) + (SAE-Bases)'] = df['TOTAL Pedidos'] + df['TOTAL: SAE - Bases']
