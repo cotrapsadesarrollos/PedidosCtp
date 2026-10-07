@@ -110,7 +110,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
     l=[]
     for j in range(2, df.shape[0]+2):
-      l.append(formula_suma_pedidos.format(j))
+      l.append(formula_suma_pedidos.format([j for i in range(numero_de_pedidos)]))
       
     df['TOTAL Pedidos'] = l
 
