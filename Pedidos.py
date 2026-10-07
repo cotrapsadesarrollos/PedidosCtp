@@ -106,7 +106,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
     st.write(formula_suma_pedidos)
 
-    df['TOTAL Pedidos'] = [f formula_suma_pedidos for j in range(1, df.shape[0])]
+    #df['TOTAL Pedidos'] = [f formula_suma_pedidos for j in range(1, df.shape[0])]
 
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
