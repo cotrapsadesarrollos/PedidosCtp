@@ -104,13 +104,12 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     for i in range(1, numero_de_pedidos + 1):
       formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{} +'
     formula_suma_pedidos = formula_suma_pedidos[:-2]
-    
-
-    st.write(formula_suma_pedidos)
 
     l=[]
     for j in range(2, df.shape[0]+2):
       l.append(formula_suma_pedidos.format(j, j, j, j, j))
+
+    st.write(l)
       
     df['TOTAL Pedidos'] = l
 
