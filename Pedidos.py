@@ -56,6 +56,8 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
   #Procesamiento de la tabla para el archivo principal
   if st.button("Crear archivo de Pedidos"):
+
+    diccionario_letras = {i:letra for i, letra in enumerate(string.ascii_uppercase, start=1)}
   
     #Creamos un diccionario con las tablas de los inventarios de cada base activa
     tablas_bases = {}
@@ -97,7 +99,6 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     for i in range(1, numero_de_pedidos + 1):
       df[f'PEDIDO {i}:'] = [0 for x in range(df.shape[0])]
 
-    diccionario_letras = {i:letra for i, letra in enumerate(string.ascii_uppercase, start=1)}
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
     formula_suma_pedidos = "= +"
@@ -120,6 +121,23 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     # Permitir descargar el resultado
     output_name = f"Pedidos_{date.today()}.xlsx"
     df.to_excel(output_name, index=False)
+
+    #Editamos el archivo para ajustar las celdas al texto
+    wb = load_workbook(output_name)
+    ws = wb[wb.sheetnames[0]]
+    for col in ws.columns:
+      max_length = 0
+      col_letter = col[0].column_letter
+      for cell in col:
+        try:
+          if cell.value:
+            max_length = max(max_length, len(str(cell.value)))
+        except:
+          pass
+      # Asignar un margen adicional para que no quede apretado
+      ws.column_dimensions[col_letter].width = max(max_length + 3, 10)
+    wb.save(output_name)
+    
     with open(output_name, "rb") as file:
         st.download_button(
             label="Descargar Archivo de pedidos",
