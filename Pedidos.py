@@ -105,17 +105,14 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
       formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{} +'
     formula_suma_pedidos = formula_suma_pedidos[:-2]
 
-    l=[formula_suma_pedidos.format(j, j, j, j, j) for j in range(2, df.shape[0]+2)]
-
-    st.write(l)
-      
-    df['TOTAL Pedidos'] = l
-
+    df['TOTAL Pedidos'] = [formula_suma_pedidos.format(j, j, j, j, j) for j in range(2, df.shape[0]+2)]
+    
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
     #Agregamos la columna del TOTAL: (Pedidos) + (SAE - Bases)
-    df['TOTAL: (Pedidos) + (SAE-Bases)'] = df['TOTAL Pedidos'] + df['TOTAL: SAE - Bases']
-
+    df['TOTAL: (Pedidos) + (SAE-Bases)'] = ['= + 'diccionario_letras[diccionario_columnas['TOTAL Pedidos']]+f'{j} + ' diccionario_letras[diccionario_columnas['TOTAL: SAE - Bases']]+f'{j}' for j in range(2, df.shape[0]+2)]
+    st.write(df['TOTAL: (Pedidos) + (SAE-Bases)'])
+    
     #Reemplazamos los ceros por nulos para que no hagan ruido en el archivo
     #df.replace(0, np.nan, inplace=True)
 
