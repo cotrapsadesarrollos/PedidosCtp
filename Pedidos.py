@@ -4,6 +4,7 @@ import numpy as np
 from datetime import date
 from openpyxl import load_workbook
 import streamlit as st
+import string
 
 st.title("Control de Pedidos", text_alignment="center")
 
@@ -100,6 +101,9 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     for i in range(1, numero_de_pedidos + 1):
         df['TOTAL Pedidos'] = df['TOTAL Pedidos'] + df[df.columns[-i]]
 
+    diccionario_letras = {i: letra for i, letra in enumerate(start=1, string.ascii_uppercase)}
+    st.write(diccionario_letras)
+
     #Agregamos la columna del TOTAL: (Pedidos) + (SAE - Bases)
     df['TOTAL: (Pedidos) + (SAE-Bases)'] = df['TOTAL Pedidos'] + df['TOTAL: SAE - Bases']
 
@@ -107,7 +111,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     #df.replace(0, np.nan, inplace=True)
 
     st.dataframe(df)
-    #st.write(tablas_bases)
+    
 
 
 
