@@ -94,7 +94,7 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
     # CAMBIAR A DINAMICO Agregamos la columna de cada pedido as como el total de los pedidos CAMBIAR A DINAMICO
     for i in range(1, numero_de_pedidos + 1):
-      df['PEDIDO {i}:'] = [0 for x in range(df.shape[0])]
+      df[f'PEDIDO {i}:'] = [0 for x in range(df.shape[0])]
 
     df['TOTAL Pedidos']=[0 for x in range(df.shape[0])]
     for i in range(1, numero_de_pedidos + 1):
