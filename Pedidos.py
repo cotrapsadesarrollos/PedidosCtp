@@ -102,7 +102,9 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
     formula_suma_pedidos = "= +"
     for i in range(1, numero_de_pedidos + 1):
-      formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{}+'
+      formula_suma_pedidos += diccionario_letras[diccionario_columnas[f'PEDIDO {i}:']] + '{} +'
+    formula_suma_pedidos = formula_suma_pedidos[:-2]
+    
 
     st.write(formula_suma_pedidos)
 
