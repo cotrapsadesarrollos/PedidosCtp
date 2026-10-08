@@ -82,6 +82,13 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     #Creamos un diccionario para numerar las columnas
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
+    #Creamos una lista con los nombres de las columnas de cada base
+    c=3
+    cols_bases=[]
+    for i in range(numero_bases_activas):
+      df[df.columns[c+3]] = ['= ' + diccionario_letras[diccionario_columnas[df.columns[c]]] + f'{j} + ' + diccionario_letras[diccionario_columnas[df.columns[c+1]]] + f'{j} +' + diccionario_letras[diccionario_columnas[df.columns[c+2]]]+ f'{j}' for j in range(2, df.shape[0]+2)]
+      c+=4
+
     #Creamos una lista con los nombres de las columnas de suma de cada base
     c=6
     cols_sumas_bases=[]
