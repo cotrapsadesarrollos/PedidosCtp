@@ -108,8 +108,6 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
 
     #Agregamos la variable de TOTAL de existencias de SAE menos las existencias en las Bases activas
     df['TOTAL: SAE - Bases'] = ['= ' + diccionario_letras[diccionario_columnas[f'Existencia SAE {date.today()}']] + f'{j} - ' + diccionario_letras[diccionario_columnas['TOTAL en Bases']] + f'{j}' for j in range(2, df.shape[0]+2)]
-
-    st.write(df['TOTAL: SAE - Bases'])
     
     # CAMBIAR A DINAMICO Agregamos la columna de cada pedido as como el total de los pedidos CAMBIAR A DINAMICO
     for i in range(1, numero_de_pedidos + 1):
