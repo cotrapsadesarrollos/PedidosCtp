@@ -96,16 +96,6 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     formula_suma_bases = formula_suma_bases[:-2]
     df['TOTAL en Bases'] = [formula_suma_bases.format(j, j, j, j, j, j, j, j, j, j) for j in range(2, df.shape[0]+2)]
 
-    c=6
-    for i in nombre_bases_activas:
-        df[df.columns[c]] = [0 if str(x)=='nan' else x for x in df[df.columns[c]]]
-        c+=4
-
-    c=6
-    for i in nombre_bases_activas:
-        df['TOTAL en Bases'] = df['TOTAL en Bases'] + df[df.columns[c]]
-        c+=4
-
     #Creamos un diccionario para numerar las columnas
     diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
 
