@@ -89,10 +89,14 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
       cols_sumas_bases.append(df.columns[c])
       c+=4
 
-    st.write(cols_sumas_bases)
-
     #Agregamos columna de TOTAL de materiales en las bases y sumamos las existencias de las bases activas
-    df['TOTAL en Bases']=[0 for x in range(df.shape[0])]
+    formula_suma_bases = "= +"
+    for i in cols_sumas_bases:
+      formula_suma_bases += diccionario_letras[diccionario_columnas[i]] + '{} +'
+    formula_suma_bases = formula_suma_bases[:-2]
+    df['TOTAL en Bases'] = [formula_suma_bases.format(j, j, j, j, j, j, j, j, j, j) for j in range(2, df.shape[0]+2)]
+
+    st.write(df['TOTAL en Bases'])
 
     c=6
     for i in nombre_bases_activas:
