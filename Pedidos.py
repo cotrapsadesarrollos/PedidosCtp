@@ -78,6 +78,18 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
     #Agregamos la informacion de las bases activas a la tabla principal
     for i in nombre_bases_activas:
       df = df.merge(tablas_bases[i], how='left', left_on='Numero de Parte', right_on='NO. DE PARTE ').drop(['NO. DE PARTE '], axis=1).copy()
+      
+    #Creamos un diccionario para numerar las columnas
+    diccionario_columnas = {columnas:i for i, columnas in enumerate(df.columns, start=1)}
+
+    #Creamos una lista con los nombres de las columnas de suma de cada base
+    c=6
+    cols_sumas_bases=[]
+    for i in range(numero_bases_activas):
+      cols_sumas_bases.append(df.columns[c])
+      c+=4
+
+    st.write(cols_sumas_bases)
 
     #Agregamos columna de TOTAL de materiales en las bases y sumamos las existencias de las bases activas
     df['TOTAL en Bases']=[0 for x in range(df.shape[0])]
