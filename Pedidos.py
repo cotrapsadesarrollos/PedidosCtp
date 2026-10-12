@@ -39,11 +39,11 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
   nombre_bases_activas = pd.ExcelFile(inventario_homologado).sheet_names[1:numero_bases_activas+1]
   columnas = list(np.array(pd.read_excel(inventario_homologado)[3:4])[0][:2]) + list(np.array(pd.read_excel(inventario_homologado)[2:3])[0][2:])
   #Agregamos la base a las columnas especificas de cada base
-  col=1
+  col=2
   for i in nombre_bases_activas:
-      for j in range(1,5):
+      for j in range(4):
           columnas[col+j] = columnas[col+j] + f' {i}'
-      col=j+1
+      col+=4
 
   #Leemos el archivo de Inventario homologado semanal
   homologado_inventarios_bases = pd.read_excel(inventario_homologado)[4:].dropna(subset=['Unnamed: 0'])
