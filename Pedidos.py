@@ -68,9 +68,9 @@ if lista_de_materiales is not None and inventario_sae_ is not None and inventari
         c+=4
 
     #Creamos diccionarios con la informacion de SAE de los materiales
-    dictio_descripcion = dict(zip(inventario_sae['Clave '],inventario_sae['Descripción ']))
-    dictio_linea = dict(zip(inventario_sae['Clave '],inventario_sae['Línea ']))
-    dictio_inventario_sae = dict(zip(inventario_sae['Clave '],inventario_sae['Existencias ']))
+    dictio_descripcion = dict(zip(inventario_sae['Clave '].astype(str),inventario_sae['Descripción ']))
+    dictio_linea = dict(zip(inventario_sae['Clave '].astype(str),inventario_sae['Línea ']))
+    dictio_inventario_sae = dict(zip(inventario_sae['Clave '].astype(str),inventario_sae['Existencias ']))
 
     #Agregamos a la tabla principal la descripcion y la existencia en SAE
     df['Descripcion'] = df['Numero de Parte'].map(lambda x: dictio_descripcion[str(x)])
