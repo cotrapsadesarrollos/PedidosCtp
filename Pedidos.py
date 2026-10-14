@@ -27,6 +27,7 @@ st.divider()
 if lista_de_materiales is not None and inventario_sae_ is not None and inventario_homologado is not None:
   # Leer el archivo Excel de Lista de Materiales e Inventario SAE
   df = pd.read_excel(lista_de_materiales)
+  df.columns[0] = 'Numero de Parte'
   inventario_sae = pd.read_excel(inventario_sae_)
 
   st.write("### Lista de Materiales")
